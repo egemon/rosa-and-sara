@@ -1,8 +1,12 @@
 <div ng-controller="BaseCtrl">
 
   <uib-tabset active="active" justified="true">
-    <uib-tab index="$index + 1" ng-repeat="tab in tabs" heading="{{tab.title}}">
-      {{tab.content}}
+    <uib-tab
+        ng-repeat="tab in tabs"
+        ui-sref="{{'/' + tab.url}}"
+        index="$index + 1"
+        heading="{{tab.name}}">
+      <main ui-view></main>
     </uib-tab>
   </uib-tabset>
 
