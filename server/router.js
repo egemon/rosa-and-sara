@@ -12,9 +12,14 @@ router.get('/*', function(req, res) {
     res.render(isDev ? 'dev.html' : 'index.html');
 });
 
-router.post('/supplies', function(req, res) {
+router.post('/get', function(req, res) {
     console.log('[ROUTER] post for', req.url);
-    res.send(dataBase.getSupplies());
+    res.send(dataBase.get(req.body.subj));
+});
+
+router.post('/set', function(req, res) {
+    console.log('[ROUTER] post for', req.url);
+    res.send(dataBase.set(req.body.subj));
 });
 
 module.exports = router;

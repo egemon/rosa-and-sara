@@ -3,17 +3,15 @@
 //
 var fs = require('fs');
 dataBase = {
-    getSupplies: getSupplies,
-    setSupplies: setSupplies,
+    get: get,
+    set: set,
+}
+function get (subject) {
+    return JSON.parse(fs.readFileSync('server/data-base/' + subject + '.json'));
 }
 
-
-function getSupplies () {
-    return JSON.parse(fs.readFileSync('server/data-base/suplies.json'));
-}
-
-function setSupplies () {
-
+function set (subject) {
+    return JSON.parse(fs.writeFileSync('server/data-base/' + subject + '.json'));
 }
 
 module.exports = dataBase;
