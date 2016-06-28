@@ -1,1 +1,1 @@
-angular.module('base', ['ui.router', 'ngAnimate', 'templates', 'ngCookies', 'ui.bootstrap']);
+angular.module('base', ['ui.grid', 'ui.router', 'ngAnimate', 'templates', 'ngCookies', 'ui.bootstrap']);

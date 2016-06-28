@@ -4,7 +4,8 @@
         {
             // default page
             url: 'supplies',
-            name: 'Поставки'
+            name: 'Поставки',
+            controller: 'SuppliesCtrl as SuppliesCtrl'
         },{
             url: 'goods',
             name: 'Товары'
