@@ -18,9 +18,10 @@
         });
     }
 
-    function set (subj) {
+    function set (subj, dat) {
         return $http.post(config.BASE_SERVER_URL + 'set', {
-            subj: subj
+            subj: subj,
+            data: data
         }).then(function (response) {
             return response.data;
         })

@@ -8,7 +8,8 @@
             controller: 'SuppliesCtrl as SuppliesCtrl'
         },{
             url: 'goods',
-            name: 'Товары'
+            name: 'Товары',
+            controller: 'GoodsCtrl as GoodsCtrl'
         },{
             url: 'owners',
             name: 'Собственники'
