@@ -1,9 +1,6 @@
 (function () { angular.module('base')
-.controller('SuppliesCtrl', ['$scope', 'suppliesSrv', function ($scope, suppliesSrv) {
+.controller('SuppliesCtrl', ['$scope', 'serverSrv', function ($scope, serverSrv) {
     var vm = this;
 
-    suppliesSrv.getSupplies().then(function (data) {
-        vm.data = data;
-    });
 }])
 })();
