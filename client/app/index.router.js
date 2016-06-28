@@ -11,8 +11,7 @@
     for (var i = 0; i < pages.length; i++) {
       var page = pages[i];
       var url = '/' + page.url;
-      console.log('index.router url = ', url);
-      // var name = page.name;
+
       $stateProvider.state(url, {
         url: url,
         templateUrl: page.url + '.html',
