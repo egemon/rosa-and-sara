@@ -1,0 +1,1 @@
+angular.module('base', ['ui.router', 'ngAnimate', 'templates', 'ngCookies', 'ui.bootstrap']);
