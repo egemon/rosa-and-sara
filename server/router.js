@@ -19,7 +19,7 @@ router.post('/get', function(req, res) {
 
 router.post('/set', function(req, res) {
     console.log('[ROUTER] post for', req.url);
-    res.send(dataBase.set(req.body.subj));
+    res.send(dataBase.set(req.body.subj, req.body.data));
 });
 
 module.exports = router;

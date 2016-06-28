@@ -24,7 +24,7 @@ app.use(compress(CONFIG));
 app.use(favicon(__dirname + '/server/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '1mb'}));
-app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '9999999mb' }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, isDev ? 'client' : 'server/public')));
 
