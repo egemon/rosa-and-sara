@@ -20,13 +20,13 @@ function injectChanges(event) {
 gulp.task('watch', function() {
 
   // Watch .css files
-  gulp.watch(config.paths.src.css, injectChanges);
+  gulp.watch('./'+config.paths.src.css, injectChanges);
 
   // Watch .js files
-  gulp.watch(config.paths.src.js, injectChanges);
+  gulp.watch('./'+config.paths.src.js, injectChanges);
 
   // Watch tmpls html files
-  gulp.watch(config.paths.src.tmpls, ['tmpls']);
+  gulp.watch('./'+config.paths.src.tmpls, ['tmpls']);
 
   // Watch tmpls html files
   gulp.watch('./conf.js', ['default']);

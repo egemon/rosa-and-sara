@@ -2,3 +2,4 @@ node_modules
 client/lib
 server/public
 client/app/templates.js
+client/dev.html
