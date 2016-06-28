@@ -42,8 +42,8 @@ app.use(function(req, res, next) {
 
 app.use(function(err, req, res, next) {
     console.log('Error!', err);
-    res.status(err.status || 500);
-    res.render('error.ejs', {
+    res.status(res.status || 500);
+    res.send({
         err: JSON.stringify(err)
     });
 });
