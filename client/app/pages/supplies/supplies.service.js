@@ -7,7 +7,7 @@
     }
 
     function getSupplies () {
-        return $http.post(config.BASE_SERVER_URL + '/supplies', {
+        return $http.post(config.BASE_SERVER_URL + 'supplies', {
 
         }).then(function (response) {
             var supplies = response.data;
