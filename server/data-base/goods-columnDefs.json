@@ -1,0 +1,30 @@
+[
+   {
+        "name": "id",
+        "enableCellEdit": true
+    },{
+        "name": "img",
+        "enableCellEdit": true
+    },{
+        "name": "name",
+        "enableCellEdit": true
+    },{
+        "name": "type",
+        "enableCellEdit": true
+    },{
+        "name": "isSold",
+        "enableCellEdit": true,
+        "type": "boolean"
+    },{
+        "name": "buyPrice",
+        "enableCellEdit": true,
+        "type": "number"
+    },{
+        "name": "sellPrice",
+        "enableCellEdit": true,
+        "type": "number"
+    },{
+        "name": "keywords",
+        "enableCellEdit": true
+    }
+]
