@@ -18,7 +18,7 @@ exports.paths = {
             'client/lib/angular/angular.min.js',
             'client/lib/angular-cookies/angular-cookies.min.js',
             'client/lib/angular-animate/angular-animate.min.js',
-            'client/lib/angular-touch/ui-touch.min.js',
+            'client/lib/angular-touch/angular-touch.min.js',
             'client/lib/angular-bootstrap/ui-bootstrap.min.js',
             'client/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'client/lib/angular-ui-grid/ui-grid.min.js',

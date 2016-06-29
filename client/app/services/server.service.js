@@ -1,9 +1,10 @@
 (function () { angular.module('base')
-.service('serverSrv', ['config', '$http', function (config, $http) {
+.service('serverSrv', ['config', '$http', function (config, $http, $q) {
 
     return {
         get: get,
         set: set,
+        getWithDefs: getWithDefs,
     }
 
     function get (subj) {
@@ -29,6 +30,10 @@
             // alert('Something went wrong!');
             console.log('getSupplies err = ', err);
         });
+    }
+
+    function getWithDefs(subj) {
+        return get(subj+'&columnDefs');
     }
 }])
 })();

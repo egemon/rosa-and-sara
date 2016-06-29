@@ -19,8 +19,13 @@ function routerConfig ($stateProvider, $urlRouterProvider, config, pages) {
         templateUrl: page.url + '.html',
         controller: page.controller,
         resolve: {
-          data: ['serverSrv', function (serverSrv) {
-            return serverSrv.get(dataKey);
+          gridOptions: ['serverSrv', function (serverSrv) {
+            // serverSrv.getWithDefs(page.url).then(function (data) {
+            //  console.log('data', data);
+            // });
+
+
+            return serverSrv.getWithDefs(page.url);
           }]
         }
       });

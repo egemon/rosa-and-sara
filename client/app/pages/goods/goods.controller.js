@@ -4,6 +4,10 @@
 
     vm.newPhotos = [];
 
+    serverSrv.get('goods-columnDefs').then(function (columnDefs) {
+       $scope.columnDefs = columnDefs;
+    });
+
     $scope.$on('file-reading-finished', function(){
         serverSrv.get('goods-tmpl').then(function (tmpl) {
             var newItems = createNewItems(vm.newPhotos, tmpl)
@@ -11,8 +15,7 @@
         })
     });
 
-
-// ===== PRIVATE =======
+    // ===== PRIVATE =======
 
     function createNewItems(newPhotos, tmpl) {
         var data = [];

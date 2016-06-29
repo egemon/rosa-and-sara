@@ -1,1 +1,1 @@
-angular.module('base', ['ui.grid', 'ui.router', 'ngAnimate', 'templates', 'ngCookies', 'ui.bootstrap']);
+angular.module('base', ['ui.grid', 'ui.grid.selection', 'ui.grid.edit', 'ui.router', 'ngAnimate', 'ngTouch', 'templates', 'ngCookies', 'ui.bootstrap']);
