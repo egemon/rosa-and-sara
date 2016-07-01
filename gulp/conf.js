@@ -10,7 +10,7 @@ exports.paths = {
         lib: 'client/lib/**/*',
         tmpls: 'client/app/**/*.html',
         appjs: 'client/app.js',
-        prodhtml: 'client/index.html',
+        prodhtml: 'client/index1.html',
         cssLibs: [
             'client/lib/angular-ui-grid/ui-grid.min.css',
             'client/lib/bootstrap/dist/css/bootstrap.min.css',

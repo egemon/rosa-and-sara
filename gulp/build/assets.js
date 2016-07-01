@@ -29,6 +29,7 @@ gulp.task('img', helper.buildFor('img',
 gulp.task('html', function () {
     return gulp.src(config.paths.src.prodhtml)
     .pipe(_if(isProd, htmlmin({collapseWhitespace: true})))
+    .pipe(rename('index.html'))
     .pipe(gulp.dest(config.paths.dest.general));
 });
 

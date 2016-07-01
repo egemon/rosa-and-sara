@@ -1,5 +1,6 @@
 #!/bin/env node
 var isDev = process.argv[2] === 'dev' ? true : false;
+isDev = true;
 console.log('isDev = ', isDev);
 
 var CONFIG = {

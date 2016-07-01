@@ -8,9 +8,6 @@
     "application",
     "openshift"
   ],
-  "scripts": {
-    "start": "gulp build && node index.js"
-  },
   "author": {
     "name": "OpenShift",
     "email": "ramr@example.org",

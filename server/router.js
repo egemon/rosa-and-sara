@@ -1,4 +1,5 @@
 var isDev = process.argv[2] === 'dev' ? true : false;
+isDev = true;
 console.log('isDev = ', isDev);
 
 var express = require('express');
@@ -9,6 +10,7 @@ var dataBase = require('./dataBase');
 // ==================== BASE for ANGULAR ==============
 router.get('/*', function(req, res) {
     console.log('[ROUTER] get for', req.url);
+    isDev = true;
     res.render(isDev ? 'dev.html' : 'index.html');
 });
 
@@ -20,7 +22,7 @@ router.post('/get', function(req, res) {
         var resp = {
             data: dataBase.get(subj),
             columnDefs: dataBase.get(subj+'-columnDefs'),
-        }
+        };
         res.send(resp);
     } else {
         res.send(dataBase.get(req.body.subj));
