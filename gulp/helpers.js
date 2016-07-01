@@ -1,19 +1,16 @@
+var gulp = require('gulp');
 var config = require('./conf.js');
 var util = require('gulp-util');
-var isProd = config.isProd;
 
 // ========= PUBLIC ============
 function buildFor(type, fn) {
-    var fn = fn || util.noop();
+    fn = fn || util.noop();
 
     return function () {
-
-        return gulp.src(config.src[type])
+        return gulp.src(config.paths.src[type])
         .pipe(fn)
-        .pipe(gulp.dest(config.dest[type]));
-
-
-    }
+        .pipe(gulp.dest(config.paths.dest[type]));
+    };
 }
 
 // ========= PRIVATE ============

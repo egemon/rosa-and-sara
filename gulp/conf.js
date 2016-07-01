@@ -10,6 +10,7 @@ exports.paths = {
         lib: 'client/lib/**/*',
         tmpls: 'client/app/**/*.html',
         appjs: 'client/app.js',
+        prodhtml: 'client/index.html',
         cssLibs: [
             'client/lib/angular-ui-grid/ui-grid.min.css',
             'client/lib/bootstrap/dist/css/bootstrap.min.css',
@@ -27,10 +28,8 @@ exports.paths = {
     },
     dest: {
         general: 'server/public',
-        favicon: 'server/public/favicon.ico',
         img: 'server/public/assets/img',
         fonts: 'server/public/assets/fonts',
-        html: 'server/public/index.html',
         js: 'server/public/js',
         css: 'server/public/css',
     },

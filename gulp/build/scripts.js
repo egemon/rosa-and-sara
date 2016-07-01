@@ -46,18 +46,19 @@ gulp.task('js-ng-app', ['tmpls'], function () {
 
 //this task collect all libs
 gulp.task('js-lib', function () {
-  return gulp.src(config.paths.src.appjs)
-    .pipe(browserify({
-        debug: true,
-        insertGlobals: true
-    }))
+  return gulp.src(config.paths.src.jsLibs)
+    // .pipe(browserify({
+    //     debug: true,
+    //     insertGlobals: true
+    // }))
+    .pipe(concat('libs.js'))
     .pipe(_if(isProd, uglify(), beautify()))
-    .pipe(rename('libs.min.js'))
+    .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest(config.paths.dest.js));
 });
 
 // this task unite ng-modules and libs
-gulp.task('js',['js-ng-app'] ,function() {
+gulp.task('js',['js-ng-app', 'js-lib'] ,function() {
   return gulp.src(config.paths.dest.js+'/libs.min.js')
     .pipe(add.append(config.paths.dest.js+'/custom.min.js'))
     .pipe(concat('main.min.js'))

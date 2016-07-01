@@ -34,5 +34,5 @@ gulp.task('css',['css-custom', 'css-lib'] ,function() {
   return gulp.src(config.paths.dest.css + '/lib.min.css')
     .pipe(add.append(config.paths.dest.css + '/custom.min.css'))
     .pipe(concat('main.min.css'))
-    .pipe(gulp.dest(config.paths.dest.css + '/css'));
+    .pipe(gulp.dest(config.paths.dest.css));
 });
