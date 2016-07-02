@@ -4,7 +4,8 @@
         "enableCellEdit": true
     },{
         "name": "img",
-        "enableCellEdit": true
+        "enableCellEdit": true,
+        "cellTemplate": "grid-img.html"
     },{
         "name": "name",
         "enableCellEdit": true
@@ -26,5 +27,9 @@
     },{
         "name": "keywords",
         "enableCellEdit": true
+    },{
+        "name": "Controls",
+        "cellTemplate": "grid-controls.html",
+        "enableCellEdit": false
     }
 ]

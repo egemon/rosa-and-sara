@@ -5,7 +5,8 @@
         get: get,
         set: set,
         getWithDefs: getWithDefs,
-    }
+        changeField: changeField,
+    };
 
     function get (subj) {
         return $http.post(config.BASE_SERVER_URL + 'get', {
@@ -19,7 +20,7 @@
         });
     }
 
-    function set (subj, dat) {
+    function set (subj, data) {
         return $http.post(config.BASE_SERVER_URL + 'set', {
             subj: subj,
             data: data
@@ -34,6 +35,10 @@
 
     function getWithDefs(subj) {
         return get(subj+'&columnDefs');
+    }
+
+    function changeField(rowEntity, field, newValue) {
+        console.log('changeField()');
     }
 }])
 })();

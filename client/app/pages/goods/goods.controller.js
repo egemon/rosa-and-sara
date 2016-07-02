@@ -11,8 +11,8 @@
     $scope.$on('file-reading-finished', function(){
         serverSrv.get('goods-tmpl').then(function (tmpl) {
             var newItems = createNewItems(vm.newPhotos, tmpl)
-            $scope.$resolve.data = $scope.$resolve.data.concat(newItems);
-        })
+            $scope.$resolve.gridOptions.data = $scope.$resolve.gridOptions.data.concat(newItems);
+        });
     });
 
     // ===== PRIVATE =======

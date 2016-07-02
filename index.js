@@ -4,12 +4,16 @@ var isDev = process.argv[2] === 'dev' ? true : false;
 console.log('isDev = ', isDev);
 
 // ============= BUILD PART ===========
-var gulp = require('gulp');
-var shell = require('gulp-shell');
-gulp.task('for-build', shell.task(['bower install', 'gulp build']));
-require('bluebird');
-var tasks = require('./gulpfile.js');
-gulp.start('for-build').doneCallback = run;
+if (!isDev) {
+    var gulp = require('gulp');
+    var shell = require('gulp-shell');
+    gulp.task('for-build', shell.task(['bower install', 'gulp build']));
+    require('bluebird');
+    var tasks = require('./gulpfile.js');
+    gulp.start('for-build').doneCallback = run;
+} else {
+    run();
+}
 
 function run() {
     var CONFIG = {
@@ -31,7 +35,7 @@ function run() {
     app.set('views', path.join(__dirname, isDev ? 'client' : 'server/public'));
 
     app.use(compress(CONFIG));
-    app.use(favicon(__dirname + '/server/public/favicon.ico'));
+    app.use(favicon(__dirname + isDev ? 'client/favicon.ico' : '/server/public/favicon.ico'));
     app.use(logger('dev'));
     app.use(bodyParser.json({limit: '1mb'}));
     app.use(bodyParser.urlencoded({ extended: false, limit: '9999999mb' }));

@@ -19,13 +19,14 @@ function routerConfig ($stateProvider, $urlRouterProvider, config, pages) {
         templateUrl: page.url + '.html',
         controller: page.controller,
         resolve: {
-          gridOptions: ['serverSrv', function (serverSrv) {
+          gridOptions: ['serverSrv', 'gridSrv', function (serverSrv, gridSrv) {
             // serverSrv.getWithDefs(page.url).then(function (data) {
             //  console.log('data', data);
             // });
+            var gridOptions = serverSrv.getWithDefs(page.url);
+            // gridOptions.onRegisterApi = gridSrv.getOnRegisterApi($scope);
 
-
-            return serverSrv.getWithDefs(page.url);
+            return gridOptions;
           }]
         }
       });
