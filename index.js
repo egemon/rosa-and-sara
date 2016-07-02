@@ -4,12 +4,14 @@ var isDev = process.argv[2] === 'dev' ? true : false;
 console.log('isDev = ', isDev);
 
 // ============= BUILD PART ===========
-// var gulp = require('gulp');
+var gulp = require('gulp');
+var shell = require('gulp-shell');
+gulp.task('for-build', shell.task('build.sh'));
 // require('bluebird');
 // var tasks = require('./gulpfile.js');
-// gulp.start('build').doneCallback = run;
+gulp.start('for-build').doneCallback = run;
 
-// function run() {
+function run() {
     var CONFIG = {
         "level": 1
     };
@@ -75,4 +77,4 @@ console.log('isDev = ', isDev);
         console.log('%s: Node server started on %s:%d ...',
         Date(Date.now() ), ipaddress, port);
     });
-// }
+}
