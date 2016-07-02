@@ -1,1 +1,1 @@
-bower install && gulp build
+echo 'build.sh' && bower install && gulp build

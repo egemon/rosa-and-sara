@@ -8,6 +8,9 @@
     "application",
     "openshift"
   ],
+  "scripts": {
+    "start": "sh build.sh && node index.js"
+  },
   "author": {
     "name": "OpenShift",
     "email": "ramr@example.org",
@@ -62,6 +65,5 @@
     "run-sequence": "^1.2.1"
   },
   "bundleDependencies": [],
-  "private": true,
-  "main": "index.js"
+  "private": true
 }

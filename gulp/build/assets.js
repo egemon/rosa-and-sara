@@ -6,7 +6,6 @@ var gulp = require('gulp'),
     _if = require('gulp-if'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
-    shell = require('gulp-shell'),
     rename = require('gulp-rename'),
     htmlmin = require('gulp-htmlmin');
 
