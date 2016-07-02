@@ -8,9 +8,6 @@
     "application",
     "openshift"
   ],
-  "scripts": {
-    "start": "sh build.sh"
-  },
   "author": {
     "name": "OpenShift",
     "email": "ramr@example.org",
