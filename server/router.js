@@ -1,5 +1,5 @@
 var isDev = process.argv[2] === 'dev' ? true : false;
-isDev = true;
+// isDev = true;
 console.log('isDev = ', isDev);
 
 var express = require('express');
