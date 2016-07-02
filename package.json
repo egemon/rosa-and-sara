@@ -9,7 +9,7 @@
     "openshift"
   ],
   "scripts": {
-    "start": "sh build.sh && node index.js"
+    "start": "sh build.sh"
   },
   "author": {
     "name": "OpenShift",
@@ -65,5 +65,6 @@
     "run-sequence": "^1.2.1"
   },
   "bundleDependencies": [],
-  "private": true
+  "private": true,
+  "main": "index.js"
 }
