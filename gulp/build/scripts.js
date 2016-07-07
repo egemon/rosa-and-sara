@@ -28,7 +28,12 @@ gulp.task('tmpls', function () {
         standalone: true,
         transformUrl: function (path) {
             var arr = path.split('/');
-            return arr[arr.length - 1];
+            if (arr.length === 1) {
+                var s = '\\';
+                var arr = path.split(s);
+            }
+            var res = arr[arr.length - 1];
+            return res;
         },
     }))
     .pipe(gulp.dest('client/app'));
