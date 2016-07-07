@@ -72,8 +72,8 @@ console.log('isDev = ', isDev);
 
 
 
-    app.listen(port, ipaddress, function() {
+    app.listen(port, function() {
         console.log('%s: Node server started on %s:%d ...',
-        Date(Date.now() ), ipaddress, port);
+        Date(Date.now() ), port);
     });
 // }
