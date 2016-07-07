@@ -4,7 +4,7 @@
   "description": "Vintage internal site",
   "keywords": [
     "Node.js",
-    "application",
+    "application"
   ],
   "scripts": {
     "postinstall": "bower install && gulp build"
