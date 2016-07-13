@@ -1,33 +1,33 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": "Vintage",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "Vintage internal site",
   "keywords": [
-    "OpenShift",
     "Node.js",
-    "application",
-    "openshift"
+    "application"
   ],
-  "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
+  "scripts": {
+    "postinstall": "bower install && gulp build"
   },
-  "homepage": "http://www.openshift.com/",
+  "author": {
+    "name": "ilukianov",
+    "email": "lykianovib@gmail.com"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/openshift/origin-server"
+    "url": "https://github.com/egemon/rosa-and-sara"
   },
   "engines": {
     "node": ">= 0.6.0",
     "npm": ">= 1.0.0"
   },
   "dependencies": {
-    "express": "^4.13.3",
     "body-parser": "^1.14.1",
+    "bower": "^1.7.9",
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.0",
     "ejs": "^2.3.4",
+    "express": "^4.13.3",
     "jade": "^1.11.0",
     "morgan": "^1.6.1",
     "serve-favicon": "^2.3.0"
@@ -62,6 +62,10 @@
     "run-sequence": "^1.2.1"
   },
   "bundleDependencies": [],
+  "cacheDirectories": [
+    "node_modules",
+    "client/lib"
+  ],
   "private": true,
   "main": "index.js"
 }

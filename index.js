@@ -4,18 +4,15 @@ var isDev = process.argv[2] === 'dev' ? true : false;
 console.log('isDev = ', isDev);
 
 // ============= BUILD PART ===========
-if (!isDev) {
-    var gulp = require('gulp');
-    var shell = require('gulp-shell');
-    gulp.task('for-build', shell.task(['bower install', 'gulp build']));
-    require('bluebird');
-    var tasks = require('./gulpfile.js');
-    gulp.start('for-build').doneCallback = run;
-} else {
-    run();
-}
-
-function run() {
+// var gulp = require('gulp');
+// var shell = require('gulp-shell');
+// gulp.task('for-build', shell.task('build.sh'));
+    // require('bluebird');
+    // var tasks = require('./gulpfile.js');
+// gulp.start('for-build').doneCallback = run;
+// function run() {
+    // run();
+// }
     var CONFIG = {
         "level": 1
     };
@@ -65,8 +62,8 @@ function run() {
     module.exports = app;
 
     //  Set the environment variables we need.
-    var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-    var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+    var ipaddress = process.env.IP;
+    var port      = process.env.PORT || 8080;
 
     if (typeof ipaddress === "undefined") {
         //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
@@ -77,8 +74,8 @@ function run() {
 
 
 
-    app.listen(port, ipaddress, function() {
+    app.listen(port, function() {
         console.log('%s: Node server started on %s:%d ...',
-        Date(Date.now() ), ipaddress, port);
+        Date(Date.now() ), port);
     });
-}
+// }
