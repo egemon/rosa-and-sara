@@ -16,14 +16,14 @@ function routerConfig ($stateProvider, $urlRouterProvider, config, pages) {
       var dataKey = page.url;
       $stateProvider.state(url, {
         url: url,
-        templateUrl: page.url + '.html',
+        templateUrl: dataKey + '.html',
         controller: page.controller,
         resolve: {
-          gridOptions: ['serverSrv', 'gridSrv', function (serverSrv, gridSrv) {
-            // serverSrv.getWithDefs(page.url).then(function (data) {
+          gridOptions: ['serverSrv', function (serverSrv) {
+            // serverSrv.getWithDefs(dataKey).then(function (data) {
             //  console.log('data', data);
             // });
-            var gridOptions = serverSrv.getWithDefs(page.url);
+            var gridOptions = serverSrv.getWithDefs(dataKey);
             // gridOptions.onRegisterApi = gridSrv.getOnRegisterApi($scope);
 
             return gridOptions;
