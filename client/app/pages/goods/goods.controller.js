@@ -1,14 +1,22 @@
 (function () { angular.module('base')
-.controller('GoodsCtrl', ['$scope', 'serverSrv', 'gridSrv', function ($scope, serverSrv,gridSrv) {
+.controller('GoodsCtrl', ['$scope', 'serverSrv', 'gridSrv', function ($scope, serverSrv, gridSrv) {
     var vm = this;
     vm.newPhotos = [];
     $scope.onRegisterApi = gridSrv.getOnRegisterApi($scope);
 
-    serverSrv.read('goods', 'all').then(function (dataResp) {
-        $scope.data = dataResp.data;
-        // $scope.columnDefs;
+    serverSrv.read('information_schema.columns', {table_name: " = 'goods'"})
+    .then(function (data) {
+        console.log('info-columns', data);
+        var defs = _.map(data.data, function (item){
+            return _.pick(item, ['column_name', 'data_type']);
+        });
+        $scope.columnDefs = gridSrv.generateDefs(defs);
 
-    });
+        serverSrv.read('goods', 'all').then(function (dataResp) {
+            $scope.data = dataResp.data;
+
+        });
+    })
 
 
     $scope.$on('file-reading-finished', function(){

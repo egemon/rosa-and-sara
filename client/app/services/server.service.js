@@ -101,7 +101,7 @@ function (config, $http, toaster) {
         }
     }
 
-    function failCallback (err) {
+    function failCallback (data, err) {
         console.error('[ServerSrv] Error, ', err);
         toaster.error(err);
 
