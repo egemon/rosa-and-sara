@@ -17,13 +17,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, config, pages) {
       $stateProvider.state(url, {
         url: url,
         templateUrl: dataKey + '.html',
-        controller: page.controller,
-        resolve: {
-          data: ['serverSrv', function (serverSrv) {
-            //TODO: remove hardcode from here, add request details to pages
-            return serverSrv.read('goods', 'all');
-          }]
-        }
+        controller: page.controller
       });
     })(page);
 
