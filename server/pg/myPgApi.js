@@ -13,7 +13,7 @@ var method = {
 
     // TODO remove aftet rewriting of pg-lib
     "getAll": "getAll",
-    "getBy": "getBy",
+    "getBy": "getBy"
 };
 
 function read(table, ids, params) {
@@ -33,6 +33,28 @@ function read(table, ids, params) {
         return data;
     });
 }
+
+//TODO: implement deleting by filter
+function del (table, ids) {
+    console.log('[pgApi] create()', arguments);
+    var query = `delete from ${table} where `;
+
+    if (_.isArrayLike(ids)) {
+        _.each(ids, function (id, i) {
+            query += ` id = ${id}`;
+            if (_.last(ids) !== id) {
+                query += ' || ';
+            }
+        });
+    }
+
+    if (_.isNumber(ids)) {
+        query += ` id = ${ids}`;
+    }
+    var connection = new Connection(query + ' returning *;');
+    return connection.execQuery();
+}
+
 //
 // function create(table, items) {
 //     return make(method.create, table, items);
@@ -74,9 +96,9 @@ function _escapeValues (object) {
 }
 
 
-function del(table, ids) {
-    return make(method.delete, table, ids, ids);
-}
+// function del(table, ids) {
+//     return make(method.delete, table, ids, ids);
+// }
 
 function update(table, items, ids) {
     console.log('ids', ids);
