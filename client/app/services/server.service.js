@@ -1,5 +1,6 @@
 (function () { angular.module('base')
-.service('serverSrv', ['config', '$http', function (config, $http, $q) {
+.service('serverSrv', ['config', '$http','toaster' ,
+function (config, $http, toaster) {
 
     return {
         create: create,
@@ -102,6 +103,8 @@
 
     function failCallback (err) {
         console.error('[ServerSrv] Error, ', err);
+        toaster.error(err);
+
     }
 
     function handleData (table, response) {

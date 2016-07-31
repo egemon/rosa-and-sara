@@ -4,16 +4,13 @@
 var pgApi = require('./pg/myPgApi');
 var router = require('./router');
 
-function handleQueryResult(res, dataArray) {
-	console.log('handleQueryResult', dataArray);
-	result = dataArray[0];
-	if (result.success) {
-		res.send(result);
-	} else {
-		res.status(400).send({
-			errorText: 'Data wasn"t deleted'
-		});
-	}
+function handleQueryResult(res, data) {
+	console.log('handleQueryResult', data);
+	result = data.rows[0];
+
+	// TODO: Add error handling
+	res.send(result);
+
 }
 
 // TODO refactor with /:table

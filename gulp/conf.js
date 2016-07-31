@@ -24,7 +24,9 @@ exports.paths = {
             'client/lib/angular-bootstrap/ui-bootstrap.min.js',
             'client/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'client/lib/angular-ui-grid/ui-grid.min.js',
+            'client/lib/AngularJS-Toaster/toaster.js',
             'client/lib/angular-ui-router/release/angular-ui-router.min.js'
+
         ],
     },
     dest: {

@@ -63,7 +63,7 @@ function create (table, items) {
     }
 
     console.log('[pgApi] query ', query);
-    var connection = new Connection(query + ';');
+    var connection = new Connection(query + ' returning *;');
     return connection.execQuery();
 }
 
