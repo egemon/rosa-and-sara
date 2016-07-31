@@ -1,18 +1,8 @@
 #!/bin/env node
-var isDev = process.argv[2] === 'dev' ? true : false;
+var isDev = process.env.NODE_ENV !== 'production';
 // isDev = true;
 console.log('isDev = ', isDev);
 
-// ============= BUILD PART ===========
-// var gulp = require('gulp');
-// var shell = require('gulp-shell');
-// gulp.task('for-build', shell.task('build.sh'));
-    // require('bluebird');
-    // var tasks = require('./gulpfile.js');
-// gulp.start('for-build').doneCallback = run;
-// function run() {
-    // run();
-// }
     var CONFIG = {
         "level": 1
     };

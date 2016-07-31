@@ -1,4 +1,4 @@
-var isDev = process.argv[2] === 'dev' ? true : false;
+var isDev = process.env.NODE_ENV !== 'production';
 // isDev = true;
 console.log('isDev = ', isDev);
 
