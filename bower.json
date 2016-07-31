@@ -23,7 +23,8 @@
     "bootstrap": "~3.3.6",
     "angular-touch": "~1.5.7",
     "lodash": "^4.14.1",
-    "AngularJS-Toaster": "angularjs-toaster#^2.0.0"
+    "AngularJS-Toaster": "angularjs-toaster#^2.0.0",
+    "angular-spinner": "^0.8.1"
   },
   "resolutions": {
     "angular": ">=1.2.16 1.4.x"

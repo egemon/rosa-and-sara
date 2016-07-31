@@ -36,6 +36,9 @@ function read(table, ids, params) {
 
 //TODO: implement deleting by filter
 function del (table, ids) {
+    try {
+        ids = JSON.parse(ids);
+    } catch (e) {}
     console.log('[pgApi] create()', arguments);
     var query = `delete from ${table} where `;
 

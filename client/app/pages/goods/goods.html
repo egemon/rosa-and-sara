@@ -1,2 +1,20 @@
 <ng-include src="'grid.html'"></ng-include>
-<file-input file-model="GoodsCtrl.newPhotos"></file-input>
+<label >
+    Dima
+    <input ng-model="GoodsCtrl.dima" type="number">
+</label>
+<label >
+    Anna
+    <input ng-model="GoodsCtrl.anna" type="number">
+</label>
+<label >
+    Other
+    <input ng-model="GoodsCtrl.other" type="number">
+</label>
+<label >
+    Date
+    <input ng-model="GoodsCtrl.date" type="date">
+</label>
+<file-input
+        disabled="!GoodsCtrl.dima || !GoodsCtrl.anna || !GoodsCtrl.other || !GoodsCtrl.date"
+        file-model="GoodsCtrl.newPhotos"></file-input>

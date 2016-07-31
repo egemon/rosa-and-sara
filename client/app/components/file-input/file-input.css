@@ -28,3 +28,6 @@ input.upload {
     position:absolute;
     font-size:1000px !important;
 }
+[disabled] + .title{
+    color: rgba(0,0,0,0.3);
+}

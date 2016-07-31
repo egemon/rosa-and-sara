@@ -21,6 +21,14 @@
 
     $scope.$on('file-reading-finished', function(){
         console.log('file-reading-finished', arguments);
+        vm.newPhotos = _.map(vm.newPhotos, function (item) {
+            return _.extend(item, {
+                dima: vm.dima,
+                anna: vm.anna,
+                other: vm.other,
+                date: vm.date
+            });
+        });
         serverSrv.create('goods', _.toArray(vm.newPhotos)).then(function (serverData) {
             $scope.data = _.concat($scope.data , serverData);
         });

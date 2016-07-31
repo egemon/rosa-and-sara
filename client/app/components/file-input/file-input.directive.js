@@ -2,7 +2,8 @@ angular.module('base')
 .directive("fileInput", [function () {
     return {
         scope: {
-            fileModel: "="
+            fileModel: "=",
+            disabled: "="
         },
         restrict: 'E',
         templateUrl: 'file-input.html',

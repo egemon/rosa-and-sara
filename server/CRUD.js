@@ -6,7 +6,7 @@ var router = require('./router');
 
 function handleQueryResult(res, data) {
 	console.log('handleQueryResult', data);
-	result = data.rows[0];
+	result = data.rows;
 
 	// TODO: Add error handling
 	res.send(result);

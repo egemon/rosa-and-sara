@@ -19,7 +19,7 @@
 		"date": {
 			name: 'date',
 			type: "date",
-
+			width: 120
 		},
 		"dima": {
 			name: 'dima',
