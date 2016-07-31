@@ -1,0 +1,1 @@
+psql postgres://iquxhghawsucgl:lyNPH-s5HeLI9j9Xbsra0GD3nk@ec2-54-228-189-127.eu-west-1.compute.amazonaws.com:5432/deotrm1iiooffc

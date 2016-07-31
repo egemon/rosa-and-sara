@@ -8,7 +8,7 @@ var dataBase = require('./dataBase');
 
 
 // ==================== BASE for ANGULAR ==============
-router.get('/*', function(req, res) {
+router.get('/', function(req, res) {
     console.log('[ROUTER] get for', req.url);
     isDev = true;
     res.render(isDev ? 'dev.html' : 'index.html');

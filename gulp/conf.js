@@ -16,6 +16,7 @@ exports.paths = {
             'client/lib/bootstrap/dist/css/bootstrap.min.css',
         ],
         jsLibs: [
+            'client/lib/lodash/lodash.js',
             'client/lib/angular/angular.min.js',
             'client/lib/angular-cookies/angular-cookies.min.js',
             'client/lib/angular-animate/angular-animate.min.js',

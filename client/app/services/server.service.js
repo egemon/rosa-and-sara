@@ -2,43 +2,111 @@
 .service('serverSrv', ['config', '$http', function (config, $http, $q) {
 
     return {
-        get: get,
-        set: set,
-        getWithDefs: getWithDefs,
-        changeField: changeField,
+        create: create,
+        read: read,
+        update: update,
+        delete: remove
     };
 
-    function get (subj) {
-        return $http.post(config.BASE_SERVER_URL + 'get', {
-            subj: subj
-        }).then(function (response) {
-            return response.data;
+
+    function create (table, items) {
+        console.log('[server.service] create()', arguments);
+
+        var data = {
+            table: table,
+            items: removeNulls(items)
+        };
+
+        return $http({
+            method: 'POST',
+            url: config.BASE_SERVER_URL + config.DATA_URL,
+            data: data,
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
-        .catch(function (err) {
-            // alert('Something went wrong!');
-            console.log('getSupplies err = ', err);
-        });
+            .catch(failCallback.bind(this, 0))
+            .then(handleData.bind(this, table));
     }
 
-    function set (subj, data) {
-        return $http.post(config.BASE_SERVER_URL + 'set', {
-            subj: subj,
-            data: data
-        }).then(function (response) {
-            return response.data;
+    function read (table, ids, params) {
+        console.log('[server.service] create()', arguments);
+
+        var data = {
+            table: table,
+            ids: ids,
+            options: params
+        };
+
+        return $http({
+            method: 'GET',
+            url: config.BASE_SERVER_URL + config.DATA_URL,
+            params: data,
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
-        .catch(function (err) {
-            // alert('Something went wrong!');
-            console.log('getSupplies err = ', err);
-        });
+            .catch(failCallback.bind(this, 0))
+            .then(handleData.bind(this, table));
     }
 
-    function getWithDefs(subj) {
-        return get(subj+'&columnDefs');
+    function update (table, items, ids) {
+        console.log('[server.service] create()', arguments);
+
+        var data = {
+            table: table,
+            items: removeNulls(items),
+            ids: ids
+        };
+
+        return $http({
+            method: 'PATCH',
+            url: config.BASE_SERVER_URL + config.DATA_URL,
+            data: data,
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
+        })
+            .catch(failCallback.bind(this, 0))
+            .then(handleData.bind(this, table));
     }
 
-    function changeField(rowEntity, field, newValue) {
-        console.log('changeField()');
+    function remove (table, ids) {
+        console.log('[server.service] delete()', ids);
+
+        var data = {
+            table: table,
+            ids: ids
+        };
+
+        return $http({
+            method: 'DELETE',
+            url: config.BASE_SERVER_URL + config.DATA_URL,
+            data: data,
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
+        })
+            .catch(failCallback.bind(this, 0))
+            .then(handleData.bind(this, table));
     }
+
+
+    //=============== HELPERS =========
+
+    function removeNulls(item) {
+        if (_.isArrayLike(item)){
+            return _.map(item, removeNulls);
+        } else {
+            return _.mapValues(item, function (val) {
+                if (val === 0) {
+                    return val;
+                } else {
+                    return val || undefined;
+                }
+            });
+        }
+    }
+
+    function failCallback (err) {
+        console.error('[ServerSrv] Error, ', err);
+    }
+
+    function handleData (table, response) {
+        return response.data;
+    }
+
 }])
 })();

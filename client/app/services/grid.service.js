@@ -2,7 +2,7 @@
 .service('gridSrv', ['serverSrv', function (serverSrv) {
 
     return {
-        getOnRegisterApi: getOnRegisterApi,
+        getOnRegisterApi: getOnRegisterApi
     };
 
     function getOnRegisterApi($scope) {
@@ -13,7 +13,7 @@
 
     function cellValueChanged(rowEntity, colDef, newValue, oldValue) {
         if (newValue !== oldValue) {
-            return serverSrv.changeField(rowEntity, colDef.field, newValue);
+            return serverSrv.update('goods', rowEntity, rowEntity.id);
         }
     }
 

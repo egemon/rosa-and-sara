@@ -19,14 +19,9 @@ function routerConfig ($stateProvider, $urlRouterProvider, config, pages) {
         templateUrl: dataKey + '.html',
         controller: page.controller,
         resolve: {
-          gridOptions: ['serverSrv', function (serverSrv) {
-            // serverSrv.getWithDefs(dataKey).then(function (data) {
-            //  console.log('data', data);
-            // });
-            var gridOptions = serverSrv.getWithDefs(dataKey);
-            // gridOptions.onRegisterApi = gridSrv.getOnRegisterApi($scope);
-
-            return gridOptions;
+          data: ['serverSrv', function (serverSrv) {
+            //TODO: remove hardcode from here, add request details to pages
+            return serverSrv.read('goods', 'all');
           }]
         }
       });

@@ -15,7 +15,7 @@ console.log('isDev = ', isDev);
     var cookieParser = require('cookie-parser');
     var bodyParser = require('body-parser');
 
-    var router = require('./server/router');
+    var router = require('./server/CRUD');
 
 
     // view engine setup

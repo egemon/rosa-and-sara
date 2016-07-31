@@ -27,7 +27,9 @@ angular.module('base')
                             console.log('[file-model] reader.onload()', arguments);
                             qNumber--;
                             scope.$apply(function () {
-                                scope.fileModel.push(loadEvent.target.result);
+                                scope.fileModel.push({
+                                    img: loadEvent.target.result
+                                });
                                 if (qNumber === 0) {
                                     scope.$emit('file-reading-finished');
                                 }

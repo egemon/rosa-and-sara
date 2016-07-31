@@ -1,5 +1,5 @@
 (function () { angular.module('base')
-.controller('SuppliesCtrl', ['$scope', 'serverSrv', function ($scope, serverSrv) {
+.controller('SuppliesCtrl', ['$scope', function ($scope) {
     var vm = this;
 
 }])

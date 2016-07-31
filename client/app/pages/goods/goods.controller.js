@@ -4,28 +4,12 @@
 
     vm.newPhotos = [];
 
-    serverSrv.get('goods-columnDefs').then(function (columnDefs) {
-       $scope.columnDefs = columnDefs;
-    });
-
     $scope.$on('file-reading-finished', function(){
-        serverSrv.get('goods-tmpl').then(function (tmpl) {
-            var newItems = createNewItems(vm.newPhotos, tmpl)
-            $scope.$resolve.gridOptions.data = $scope.$resolve.gridOptions.data.concat(newItems);
+        console.log('file-reading-finished', arguments);
+        serverSrv.create('goods', _.toArray(vm.newPhotos)).then(function (data) {
+            $scope.$resolve.data.data = _.concat($scope.$resolve.data.data , vm.newPhotos);
         });
     });
-
-    // ===== PRIVATE =======
-
-    function createNewItems(newPhotos, tmpl) {
-        var data = [];
-        for (var i = 0; i < newPhotos.length; i++) {
-            var item = angular.copy(tmpl);
-            item.img = newPhotos[i];
-            data[i] = item;
-        }
-        return data;
-    }
 
 }])
 })();
