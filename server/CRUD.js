@@ -1,8 +1,17 @@
-/**
- * Created by ilukianov on 31.07.16.
- */
+var isDev = process.env.NODE_ENV !== 'production';
+console.log('isDev = ', isDev);
+
+var express = require('express');
+var router = express.Router();
 var pgApi = require('./pg/myPgApi');
-var router = require('./router');
+
+
+// ==================== BASE for ANGULAR ==============
+router.get('/', function(req, res) {
+	console.log('[ROUTER] get for', req.url);
+	isDev = true;
+	res.render(isDev ? 'dev.html' : 'index.html');
+});
 
 function handleQueryResult(res, data) {
 	console.log('handleQueryResult', data);
