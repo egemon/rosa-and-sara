@@ -1,20 +1,20 @@
 <ng-include src="'grid.html'"></ng-include>
 <label >
     Dima
-    <input ng-model="GoodsCtrl.dima" type="number">
+    <input ng-model="GoodsCtrl.percentdima" type="number">
 </label>
 <label >
     Anna
-    <input ng-model="GoodsCtrl.anna" type="number">
+    <input ng-model="GoodsCtrl.percentanna" type="number">
 </label>
 <label >
     Other
-    <input ng-model="GoodsCtrl.other" type="number">
+    <input ng-model="GoodsCtrl.percentother" type="number">
 </label>
 <label >
     Date
     <input ng-model="GoodsCtrl.date" type="date">
 </label>
 <file-input
-        disabled="!GoodsCtrl.dima || !GoodsCtrl.anna || !GoodsCtrl.other || !GoodsCtrl.date"
+        disabled="!GoodsCtrl.date || (GoodsCtrl.percentdima + GoodsCtrl.percentanna + GoodsCtrl.percentother !== 1)"
         file-model="GoodsCtrl.newPhotos"></file-input>

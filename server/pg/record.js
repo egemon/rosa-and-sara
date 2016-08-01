@@ -18,6 +18,9 @@ module.exports = class Record extends Connection {
     if (this.record_id === '' || this.record_id === null) {
       throw new Error('Unable to identify record. Id is absent.');
     }
+    if (this.record_id === 'all' || _.isUndefined(this.record_id)){
+      return '';
+    }
 
     return `where id = ${this.record_id}`;
   }
@@ -72,6 +75,7 @@ module.exports = class Record extends Connection {
   }
 
   update(){
+    console.log('args', arguments);
     this.sql = this.updateSql();
     return this.execQuery().then( data => this.record_id = data.rows[0] && data.rows[0].id);
   }

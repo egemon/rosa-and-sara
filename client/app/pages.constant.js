@@ -8,7 +8,8 @@
             controller: 'GoodsCtrl as GoodsCtrl'
         },{
             url: 'owners',
-            name: 'Собственники'
+            name: 'Собственники',
+            controller: 'OwnersCtrl as OwnersCtrl'
         }
     ]);
 

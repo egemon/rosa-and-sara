@@ -1,65 +1,96 @@
-(function () { angular.module('base')
-	.constant('GOODS', {
+(function () {
+	angular.module('base').constant('GOODS', {
 		"id": {
 			name: 'id',
 			type: "number",
-			visible: false,
+			visible: false
 		},
 		"img": {
 			name: 'img',
+			displayName: "Цаца",
 			type: "text",
 			cellTemplate: "grid-img.html",
-			width: 50,
+			width: 150
 		},
 		"name": {
 			name: 'name',
-			type: "text",
+			displayName: "Имя",
+			type: "text"
 
 		},
 		"date": {
 			name: 'date',
+			displayName: "Дата",
 			type: "date",
 			width: 120
 		},
-		"dima": {
-			name: 'dima',
+		"percentdima": {
+			name: 'percentdima',
 			type: "number",
+			displayName: "Дима, %"
 
 		},
-		"anna": {
-			name: 'anna',
+		"percentanna": {
+			name: 'percentanna',
 			type: "number",
+			displayName: "Анна, %"
 
 		},
-		"other": {
-			name: 'other',
+		"percentother": {
+			name: 'percentother',
 			type: "number",
+			displayName: "Кто-то, %"
 
 		},
 		"decription": {
 			name: 'decription',
-			type: "text",
+			displayName: "Описание",
+			type: "text"
 
 		},
 		"type": {
 			name: 'type',
-			type: "text",
+			displayName: "Тип",
+			type: "text"
 
 		},
 		"sold": {
 			name: 'sold',
-			type: "boolean",
+			displayName: "Продано",
+			type: "boolean"
 
 		},
 		"price": {
 			name: 'price',
-			type: "number",
+			displayName: "Цена",
+			type: "number"
 
 		},
 		"keywords": {
 			name: 'keywords',
-			type: "text",
+			displayName: "Ключи",
+			type: "text"
 
 		},
+		"considereddima": {
+			name: 'considereddima',
+			displayName: "Диме отдали",
+			type: "boolean",
+			visible: false
+
+		},
+		"consideredanna": {
+			name: 'consideredanna',
+			displayName: "Ане отдали",
+			type: "boolean",
+			visible: false
+
+		},
+		"consideredother": {
+			name: 'consideredother',
+			displayName: "Кому-то отдали",
+			type: "boolean",
+			visible: false
+		}
 	});
 })();

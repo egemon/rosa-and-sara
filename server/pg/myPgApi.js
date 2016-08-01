@@ -58,6 +58,11 @@ function del (table, ids) {
     return connection.execQuery();
 }
 
+function execute (query) {
+    return (new Connection(query)).execQuery();
+}
+
+
 //
 // function create(table, items) {
 //     return make(method.create, table, items);
@@ -108,13 +113,59 @@ function update(table, items, ids) {
     return make(method.update, table, items, ids);
 }
 
+// function update (table, fieldsObj, ids) {
+//         try {
+//             ids = JSON.parse(ids);
+//         } catch (e) {}
+//         try {
+//             items = JSON.parse(items);
+//         } catch (e) {}
+//
+//         console.log('[pgApi] update()', arguments);
+//         var query = `update ${table} set `;
+//
+//         _.each(fieldsObj, function (val, key) {
+//            query += `(${_.keys(fieldsObj).join()}) = (${_.values(fieldsObj).join()})`;
+//         });
+//
+//         if (ids && ids !== 'all') {
+//
+//             query += ' where ';
+//
+//             if (_.isArray(ids)) {
+//                 _.each(ids, function (id, i) {
+//                     query += ` id = ${id}`;
+//                     if (_.last(ids) !== id) {
+//                         query += ' || ';
+//                     }
+//                 });
+//             }
+//
+//             if (_.isNumber(ids)) {
+//                 query += ` id = ${ids}`;
+//             }
+//
+//             if (_.isPlainObject(ids)) {
+//                 _.each(ids, function (val, key) {
+//                     query += ` ${key} ${val} and `
+//                 });
+//                 query = query.slice(0, query.lastIndexOf('and')) +
+//                     query.slice(query.lastIndexOf('and')).replace('and', '');
+//             }
+//         }
+//
+//         var connection = new Connection(query + ' returning *;');
+//         return connection.execQuery();
+// }
+
+
 function make(cmd, table, items, ids, filters, params) {
     "use strict";
     items = toArray(items);
     ids = toArray(ids);
     var results = [];
     return items.reduce(function (promise, item, i) {
-        var id = ids && ids.length && ids[i];
+        var id = _.isArray(ids) ? ids[i] : ids;
         return promise.then(function () {
             class BaseUser extends Record {
               constructor(){
@@ -146,6 +197,8 @@ function make(cmd, table, items, ids, filters, params) {
 }
 
 
+
+
 function toArray(items) {
     return items instanceof Array ? items : items === undefined ? undefined : [items];
 }
@@ -155,5 +208,6 @@ module.exports = {
     read: read,
     update: update,
     delete: del,
+    execute: execute,
     make: make
 };

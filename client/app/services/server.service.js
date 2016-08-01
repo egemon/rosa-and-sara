@@ -6,6 +6,7 @@ function (config, $http, toaster) {
         create: create,
         read: read,
         update: update,
+        execute: execute,
         delete: remove
     };
 
@@ -19,7 +20,7 @@ function (config, $http, toaster) {
         };
 
         return $http({
-            method: 'POST',
+            method: 'PUT',
             url: config.BASE_SERVER_URL + config.DATA_URL,
             data: data,
             headers: {'Content-Type': 'application/json;charset=utf-8'}
@@ -84,6 +85,16 @@ function (config, $http, toaster) {
             .then(handleData.bind(this, table));
     }
 
+    function execute (query) {
+        return $http({
+            method: 'POST',
+            url: config.BASE_SERVER_URL + config.DATA_URL,
+            data: {query: query},
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
+        })
+            .catch(failCallback.bind(this, 0))
+            .then(handleData.bind(this, null));
+    }
 
     //=============== HELPERS =========
 
@@ -92,7 +103,7 @@ function (config, $http, toaster) {
             return _.map(item, removeNulls);
         } else {
             return _.mapValues(item, function (val) {
-                if (val === 0) {
+                if (val === 0 || val === false) {
                     return val;
                 } else {
                     return val || undefined;

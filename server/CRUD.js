@@ -23,8 +23,8 @@ router.delete('/data', function (req, res) {
 
 });
 
-router.post('/data', function (req, res) {
-	console.log('post for data');
+router.put('/data', function (req, res) {
+	console.log('put for data');
 	pgApi.create(req.body.table, req.body.items)
 		.then(handleQueryResult.bind(null, res), function (err) {
 			res.status(400).send(err);
@@ -56,6 +56,15 @@ router.get('/data', function (req, res) {
 router.patch('/data', function (req, res) {
 	console.log('patch set', req.body);
 	pgApi.update(req.body.table, req.body.items, req.body.ids)
+		.then(handleQueryResult.bind(null, res), function (err) {
+			res.status(400).send(err);
+		});
+
+});
+
+router.post('/data', function (req, res) {
+	console.log('post data', req.body);
+	pgApi.execute(req.body.query)
 		.then(handleQueryResult.bind(null, res), function (err) {
 			res.status(400).send(err);
 		});
