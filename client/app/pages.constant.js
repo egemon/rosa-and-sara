@@ -7,9 +7,9 @@
             name: 'Товары',
             controller: 'GoodsCtrl as GoodsCtrl'
         },{
-            url: 'owners',
-            name: 'Собственники',
-            controller: 'OwnersCtrl as OwnersCtrl'
+            url: 'totals',
+            name: 'Итоги',
+            controller: 'TotalsCtrl as TotalsCtrl'
         }
     ]);
 

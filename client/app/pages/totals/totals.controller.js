@@ -1,5 +1,5 @@
 (function () { angular.module('base')
-.controller('OwnersCtrl', ['$scope', 'serverSrv', function ($scope, serverSrv) {
+.controller('TotalsCtrl', ['$scope', 'serverSrv', function ($scope, serverSrv) {
     var vm = this;
 
 	var rows = [{
