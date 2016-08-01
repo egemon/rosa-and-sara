@@ -1,6 +1,5 @@
 #!/bin/env node
 var isDev = process.env.NODE_ENV !== 'production';
-// isDev = true;
 console.log('isDev = ', isDev);
 
     var CONFIG = {

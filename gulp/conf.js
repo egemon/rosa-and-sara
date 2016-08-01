@@ -13,6 +13,7 @@ exports.paths = {
         cssLibs: [
             'client/lib/angular-ui-grid/ui-grid.min.css',
             'client/lib/bootstrap/dist/css/bootstrap.min.css',
+            'client/lib/AngularJS-Toaster/toaster.min.css',
         ],
         jsLibs: [
             'client/lib/lodash/lodash.js',

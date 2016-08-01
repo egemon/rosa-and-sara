@@ -26,7 +26,7 @@ function (config, $http, toaster) {
             headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
             .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, table));
+            .then(handleData.bind(this, table, 'create'));
     }
 
     function read (table, ids, params) {
@@ -45,7 +45,7 @@ function (config, $http, toaster) {
             headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
             .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, table));
+            .then(handleData.bind(this, table, 'read'));
     }
 
     function update (table, items, ids) {
@@ -64,7 +64,7 @@ function (config, $http, toaster) {
             headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
             .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, table));
+            .then(handleData.bind(this, table, 'update'));
     }
 
     function remove (table, ids) {
@@ -82,7 +82,7 @@ function (config, $http, toaster) {
             headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
             .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, table));
+            .then(handleData.bind(this, table, 'remove'));
     }
 
     function execute (query) {
@@ -93,7 +93,7 @@ function (config, $http, toaster) {
             headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
             .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, null));
+            .then(handleData.bind(this, null, 'execute'));
     }
 
     //=============== HELPERS =========
@@ -114,11 +114,12 @@ function (config, $http, toaster) {
 
     function failCallback (data, err) {
         console.error('[ServerSrv] Error, ', err);
-        toaster.error(err);
+        toaster.error('Error', err);
 
     }
 
-    function handleData (table, response) {
+    function handleData (table, cmd, response) {
+        toaster.success('Data ' + cmd + 'ed');
         return response.data;
     }
 
