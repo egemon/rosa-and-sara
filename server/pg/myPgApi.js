@@ -3,6 +3,108 @@ var Record = require('./record.js');
 var Connection = require('./connection');
 
 
+// =================== NEW PART ====================
+
+function create (table, items) {
+    var query = `insert into ${table} `;
+
+    //assuming all items have the same structure
+    if (_.isArray(items)) {
+        query += ` (${_.keys(items[0]).join()}) values `;
+        _.each(items, function (item, i) {
+
+
+            query += ` (${_.values(_escapeValues(item)).join()}) `;
+            if (_.last(items) !== item) {
+                query += ' , ';
+            }
+        });
+    }
+
+    if (_.isPlainObject(items)) {
+        query += ` (${_.keys(items).join()}) values `;
+        query += ` (${_.values(_escapeValues(items)).join()}) `;
+    }
+
+    return execute(query, true);
+}
+
+//TODO refactore to change needed fields
+// function read1 (table, ids, params) {
+//     var query = `select *  from ${table} `;
+//
+//
+//     if (ids === 'all' || ids === '*' || _.isUndefined(ids) ) {
+//         return execute(query);
+//     }
+//
+//     // Assuming it is array of ids
+//     if (_.isArray(ids)) {
+//         query += _where(ids, query);
+//     }
+//
+//     if (_.isPlainObject(ids)) {
+//
+//     }
+//
+//     return execute(query);
+// }
+
+//TODO: implement deleting by filter
+function del (table, ids) {
+    ids = _parse(ids);
+
+    var query = ` delete from ${table} `;
+
+    // Assuming it is array of ids
+    if (_.isArray(ids) || _.isNumber(ids)) {
+        query += _where(ids, query);
+    }
+
+
+    if (_.isPlainObject(ids)) {
+
+    }
+
+    return execute(query, true);
+}
+
+
+function execute (query, returning) {
+    return (new Connection(query  + (returning ? ' returning *' : '' )+ ' ;')).execQuery();
+}
+
+
+//=========== NEW HELPERS ===============
+
+function _parse (data) {
+    try {
+        return JSON.parse(data);
+    } catch (e) {
+        return data;
+    }
+}
+
+function _where (ids, query) {
+    ids = _.isNumber(ids) ? [ids] : ids;
+    query += ' where ';
+    _.each(ids, function (id) {
+        query += ` id = ${id}`;
+        if (_.last(ids) !== id) {
+            query += ' || ';
+        }
+    });
+    return query;
+}
+
+function _escapeValues (object) {
+    return _.mapValues(object, function (value) {
+        return _.isNumber(value) ? value : ` '${value}' `;
+    })
+}
+
+
+// =================== OLD PART ====================
 
 // CRUD-M
 var method = {
@@ -34,130 +136,11 @@ function read(table, ids, params) {
     });
 }
 
-//TODO: implement deleting by filter
-function del (table, ids) {
-    try {
-        ids = JSON.parse(ids);
-    } catch (e) {}
-    console.log('[pgApi] create()', arguments);
-    var query = `delete from ${table} where `;
-
-    if (_.isArrayLike(ids)) {
-        _.each(ids, function (id, i) {
-            query += ` id = ${id}`;
-            if (_.last(ids) !== id) {
-                query += ' || ';
-            }
-        });
-    }
-
-    if (_.isNumber(ids)) {
-        query += ` id = ${ids}`;
-    }
-    var connection = new Connection(query + ' returning *;');
-    return connection.execQuery();
-}
-
-function execute (query) {
-    return (new Connection(query)).execQuery();
-}
-
-
-//
-// function create(table, items) {
-//     return make(method.create, table, items);
-// }
-
-function create (table, items) {
-    console.log('[pgApi] create()', arguments);
-    var query = `insert into ${table} `;
-
-    //assuming all items have the same structure
-    if (_.isArrayLike(items)) {
-        console.log('[pgApi] isArrayLike()', items);
-        query += ` (${_.keys(items[0]).join()}) values `;
-        _.each(items, function (item, i) {
-
-
-            query += ` (${_.values(_escapeValues(item)).join()}) `;
-            if (_.last(items) !== item) {
-                query += ' , ';
-            }
-        });
-    }
-
-    if (_.isPlainObject(items)) {
-        console.log('[pgApi] isPlainObject()', items);
-        query += ` (${_.keys(items).join()}) values `;
-        query += ` (${_.values(_escapeValues(items)).join()}) `;
-    }
-
-    console.log('[pgApi] query ', query);
-    var connection = new Connection(query + ' returning *;');
-    return connection.execQuery();
-}
-
-function _escapeValues (object) {
-    return _.mapValues(object, function (value) {
-        return _.isNumber(value) ? value : ` '${value}' `;
-    })
-}
-
-
-// function del(table, ids) {
-//     return make(method.delete, table, ids, ids);
-// }
 
 function update(table, items, ids) {
     console.log('ids', ids);
     return make(method.update, table, items, ids);
 }
-
-// function update (table, fieldsObj, ids) {
-//         try {
-//             ids = JSON.parse(ids);
-//         } catch (e) {}
-//         try {
-//             items = JSON.parse(items);
-//         } catch (e) {}
-//
-//         console.log('[pgApi] update()', arguments);
-//         var query = `update ${table} set `;
-//
-//         _.each(fieldsObj, function (val, key) {
-//            query += `(${_.keys(fieldsObj).join()}) = (${_.values(fieldsObj).join()})`;
-//         });
-//
-//         if (ids && ids !== 'all') {
-//
-//             query += ' where ';
-//
-//             if (_.isArray(ids)) {
-//                 _.each(ids, function (id, i) {
-//                     query += ` id = ${id}`;
-//                     if (_.last(ids) !== id) {
-//                         query += ' || ';
-//                     }
-//                 });
-//             }
-//
-//             if (_.isNumber(ids)) {
-//                 query += ` id = ${ids}`;
-//             }
-//
-//             if (_.isPlainObject(ids)) {
-//                 _.each(ids, function (val, key) {
-//                     query += ` ${key} ${val} and `
-//                 });
-//                 query = query.slice(0, query.lastIndexOf('and')) +
-//                     query.slice(query.lastIndexOf('and')).replace('and', '');
-//             }
-//         }
-//
-//         var connection = new Connection(query + ' returning *;');
-//         return connection.execQuery();
-// }
-
 
 function make(cmd, table, items, ids, filters, params) {
     "use strict";

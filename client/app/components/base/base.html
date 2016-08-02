@@ -1,5 +1,6 @@
 <div ng-controller="BaseCtrl">
   <toaster-container></toaster-container>
+  <span us-spinner="{radius:30, width:8, length: 16}" spinner-key='loading'></span>
   <uib-tabset active="active" justified="true">
     <uib-tab
         ng-repeat="tab in tabs"

@@ -34,7 +34,7 @@
 " sum (percentDima  *  price * cast( NOT COALESCE(consideredDima, false)  as int) ) as expectedDima," +
 " sum (percentAnna  *  price * cast( NOT COALESCE(consideredAnna, false)  as int) ) as expectedAnna, " +
 " sum (percentOther *  price * cast( NOT COALESCE(consideredOther, false) as int) ) as expectedOther " +
-	" from goods where sold = true group by ();")
+	" from goods where sold = true group by () ")
 
 		.then(function (data) {
 
@@ -62,10 +62,11 @@
 		var name = 'considered' + rowEntity.name;
 		var obj = {};
 		obj[name] = true;
-		serverSrv.update('goods', obj, 'all').then(function (data) {
-			rowEntity.total = _.toNumber(rowEntity.total) +  _.toNumber(rowEntity.expected);
-			rowEntity.expected = 0;
-		});
+		serverSrv.update('goods', obj, 'all')
+			.then(function (data) {
+				rowEntity.total = _.toNumber(rowEntity.total) +  _.toNumber(rowEntity.expected);
+				rowEntity.expected = 0;
+			});
 	}
 }])
 })();

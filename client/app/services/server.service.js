@@ -1,6 +1,6 @@
 (function () { angular.module('base')
-.service('serverSrv', ['config', '$http','toaster' ,
-function (config, $http, toaster) {
+.service('serverSrv', ['config', '$http', 'toaster', '$rootScope',
+function (config, $http, toaster, $rootScope) {
 
     return {
         create: create,
@@ -24,9 +24,7 @@ function (config, $http, toaster) {
             url: config.BASE_SERVER_URL + config.DATA_URL,
             data: data,
             headers: {'Content-Type': 'application/json;charset=utf-8'}
-        })
-            .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, table, 'create'));
+        });
     }
 
     function read (table, ids, params) {
@@ -43,9 +41,7 @@ function (config, $http, toaster) {
             url: config.BASE_SERVER_URL + config.DATA_URL,
             params: data,
             headers: {'Content-Type': 'application/json;charset=utf-8'}
-        })
-            .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, table, 'read'));
+        });
     }
 
     function update (table, items, ids) {
@@ -62,9 +58,7 @@ function (config, $http, toaster) {
             url: config.BASE_SERVER_URL + config.DATA_URL,
             data: data,
             headers: {'Content-Type': 'application/json;charset=utf-8'}
-        })
-            .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, table, 'update'));
+        });
     }
 
     function remove (table, ids) {
@@ -80,9 +74,7 @@ function (config, $http, toaster) {
             url: config.BASE_SERVER_URL + config.DATA_URL,
             data: data,
             headers: {'Content-Type': 'application/json;charset=utf-8'}
-        })
-            .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, table, 'remove'));
+        });
     }
 
     function execute (query) {
@@ -91,9 +83,7 @@ function (config, $http, toaster) {
             url: config.BASE_SERVER_URL + config.DATA_URL,
             data: {query: query},
             headers: {'Content-Type': 'application/json;charset=utf-8'}
-        })
-            .catch(failCallback.bind(this, 0))
-            .then(handleData.bind(this, null, 'execute'));
+        });
     }
 
     //=============== HELPERS =========
