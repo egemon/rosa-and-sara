@@ -58,7 +58,7 @@ function del (table, ids) {
 
     // Assuming it is array of ids
     if (_.isArray(ids) || _.isNumber(ids)) {
-        query += _where(ids, query);
+        query = _where(ids, query);
     }
 
 
